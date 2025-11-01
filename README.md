@@ -18,7 +18,7 @@ nodemon - Recarga automática
 
 🚀 Instalación Rápida
 # 1. Clonar e instalar
-git clone [url-del-repo]
+git clone https://github.com/Jhonzn/api-sis-vot
 cd api-rest-sisvot
 npm install
 
