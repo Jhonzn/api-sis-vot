@@ -4,11 +4,11 @@ const cadidate = require("../models/candidates");
 exports.registerCandidate = async (req, res) => {
 
     try {
-        const { nombre, party } = req.body;
+        const { name, party } = req.body;
 
-        await ValidationService.validateUniqueName(nombre);
+        await ValidationService.validateUniqueName(name);
 
-        const newCandi = await cadidate.create({ nombre, party });
+        const newCandi = await cadidate.create({ name, party });
 
         res.status(201).json({ msg: "Candidato creado", user: newCandi });
         
@@ -35,7 +35,7 @@ exports.obtDetCandi = async (req, res) => {
     const { idCandidate } = req.params;
 
     const candid = await cadidate.find({ _id: idCandidate })
-      .populate("_id", "nombre party votes"); 
+      .populate("_id", "name party votes"); 
 
     res.json(candid);
   } catch (err) {

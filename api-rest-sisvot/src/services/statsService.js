@@ -5,7 +5,7 @@ const Candidates = require('../models/candidates.js');
 class StatsService {
   static async getStats() {
     const [candidates, totalVoters, totalVotes] = await Promise.all([
-      Candidates.find().select('nombre party votes'), 
+      Candidates.find().select('name party votes'), 
       Voters.countDocuments(),
       Votes.countDocuments()
     ]);

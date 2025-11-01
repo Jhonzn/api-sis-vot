@@ -5,9 +5,9 @@ const votes = require("../models/votes.js");
 exports.votar = async (req, res) => {
     try {
 
-        const { idVoter, idCandidate } = req.body;
+        const { voter_id, candidate_id } = req.body;
     
-        const vote = await VotingService.processVote({ idVoter, idCandidate });
+        const vote = await VotingService.processVote({ voter_id, candidate_id });
         
         res.status(201).json({
             success: true,
@@ -24,8 +24,8 @@ exports.votar = async (req, res) => {
 exports.getVotes = async (req, res) => {
   try {
     const votess = await votes.find()
-      .populate('idCandidate', 'nombre party')
-      .populate('idVoter', 'nombre email')
+      .populate('candidate_id', 'name party')
+      .populate('voter_id', 'name email')
 
     res.json({
       success: true,

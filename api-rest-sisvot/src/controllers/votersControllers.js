@@ -4,15 +4,15 @@ const voter = require("../models/voters");
 exports.registerVoter = async (req, res) => {
 
     try {
-        const { nombre, email } = req.body;
+        const { name, email } = req.body;
 
         const voterExist = await voter.findOne({email});
 
         if ( voterExist ) return res.status(400).json({ msg: "Votante ya existe" });
 
-        await ValidationService.validateUniqueName(nombre);
+        await ValidationService.validateUniqueName(name);
 
-        const newVoter = await voter.create({ nombre, email });
+        const newVoter = await voter.create({ name, email });
 
         res.status(201).json({ msg: "Votante creado", user: newVoter });
         
@@ -38,7 +38,7 @@ exports.obtDetVoter = async (req, res) => {
   try {
     const { idVoter } = req.params;
 
-    const voters = await voter.findById(idVoter).select("nombre email has_voted");
+    const voters = await voter.findById(idVoter).select("name email has_voted");
 
     res.json(voters);
   } catch (err) {

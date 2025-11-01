@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const votersSchema = new mongoose.Schema({
     
-    nombre: { 
+    name: { 
         type: String, 
         required: true, 
         validate: {
