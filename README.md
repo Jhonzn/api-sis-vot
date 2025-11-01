@@ -17,7 +17,6 @@ Desarrollo
 nodemon - Recarga automática
 
 🚀 Instalación Rápida
-bash
 # 1. Clonar e instalar
 git clone [url-del-repo]
 cd api-rest-sisvot
