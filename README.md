@@ -78,7 +78,7 @@ Headers: Authorization: Bearer [token]
 POST http://localhost:8090/voters/registerVoter
 Headers: Authorization: Bearer [token]
 Body: {
-  "nombre": "Monti Alvarez",
+  "name": "Monti Alvarez",
   "email": "monti@email.com"
 }
 
