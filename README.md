@@ -47,17 +47,17 @@ POST [/api/voters](http://localhost:8090/voters) - Registrar votante
 
 GET [/api/voters](http://localhost:8090/voters) - Listar votantes
 
-GET [/api/voters/obtDetVoter/:id](http://localhost:8090/voters/obtDetVoter/69055b1768f798c70c7e5461) - Detalles de votante
+GET [/api/voters/:id](http://localhost:8090/voters/69055b1768f798c70c7e5461) - Detalles de votante
 
-DELETE [/api/voters/deleteVoter/:id](http://localhost:8090/voters/deleteVoter/69055b1768f798c70c7e5461) - Eliminar votante
+DELETE [/api/voters/:id](http://localhost:8090/voters/69055b1768f798c70c7e5461) - Eliminar votante
 
 POST [/api/candidates](http://localhost:8090/candidates) - Registrar canditato
 
 GET [/api/candidates](http://localhost:8090/candidates) - Listar canditatos
 
-GET [/api/candidates/obtDetCandi/:id](http://localhost:8090/candidates/obtDetCandi/69056926e015213392de7ed0) - Detalles de canditato
+GET [/api/candidates/:id](http://localhost:8090/candidates/69056926e015213392de7ed0) - Detalles de canditato
 
-DELETE [/api/candidates/deleteCandi/:id](http://localhost:8090/candidates/deleteCandi/690605329f7db07cfc6a4279) - Eliminar canditato
+DELETE [/api/candidates/:id](http://localhost:8090/candidates/690605329f7db07cfc6a4279) - Eliminar canditato
 
 POST [/api/votes](http://localhost:8090/votes) - Registrar voto
 
