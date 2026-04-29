@@ -47,6 +47,9 @@ POST [/api/voters](http://localhost:8090/voters) - Registrar votante
 
 GET [/api/voters](http://localhost:8090/voters) - Listar votantes
 
+[GET [/api/voters/filter](http://localhost:8090/voters/filter)](http://localhost:8090/api/voters/filter?name=Manuel%20James&page=1&limit=10
+) - Filtrar votante y paginación
+
 GET [/api/voters/:id](http://localhost:8090/voters/69055b1768f798c70c7e5461) - Detalles de votante
 
 DELETE [/api/voters/:id](http://localhost:8090/voters/69055b1768f798c70c7e5461) - Eliminar votante
@@ -54,6 +57,9 @@ DELETE [/api/voters/:id](http://localhost:8090/voters/69055b1768f798c70c7e5461) 
 POST [/api/candidates](http://localhost:8090/candidates) - Registrar canditato
 
 GET [/api/candidates](http://localhost:8090/candidates) - Listar canditatos
+
+[GET [/api/candidates/filter](http://localhost:8090/candidates/filter)](http://localhost:8090/api/candidates/filter?name=Luis%20Manuel&page=1&limit=10
+) - Filtrar votante y paginación
 
 GET [/api/candidates/:id](http://localhost:8090/candidates/69056926e015213392de7ed0) - Detalles de canditato
 
