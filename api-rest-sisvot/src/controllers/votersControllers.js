@@ -3,35 +3,35 @@ const voter = require("../models/voters");
 
 exports.registerVoter = async (req, res) => {
 
-    try {
-        const { name, email } = req.body;
+  try {
+    const { name, email, cedula } = req.body;
 
-        const voterExist = await voter.findOne({email});
+    const voterExist = await voter.findOne({ email });
 
-        if ( voterExist ) return res.status(400).json({ msg: "Votante ya existe" });
+    if (voterExist) return res.status(400).json({ msg: "Votante ya existe" });
 
-        await ValidationService.validateUniqueName(name);
+    await ValidationService.validateUniqueName(name);
 
-        const newVoter = await voter.create({ name, email });
+    const newVoter = await voter.create({ name, email, cedula });
 
-        res.status(201).json({ msg: "Votante creado", user: newVoter });
-        
-    } catch (err) {
-        res.status(500).json({ msg: err.message });   
-    }
+    res.status(201).json({ msg: "Votante creado", user: newVoter });
+
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
 }
-exports.obtVoters = async ( req, res ) => {
-    try {
+exports.obtVoters = async (req, res) => {
+  try {
 
-        const getVoters = await voter.find();
-        if (!getVoters || getVoters.length === 0) {
-            return res.status(400).json({success: false, message: "Votantes no encontrados"})    
-        }
-        res.json(getVoters);
-        
-    } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
+    const getVoters = await voter.find();
+    if (!getVoters || getVoters.length === 0) {
+      return res.status(400).json({ success: false, message: "Votantes no encontrados" })
     }
+    res.json(getVoters);
+
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 }
 
 exports.obtDetVoter = async (req, res) => {
@@ -62,3 +62,45 @@ exports.deleteVoter = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+
+
+
+exports.getVoters = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const name = req.query.name || "";
+
+    const filter = {};
+
+    if (name) {
+      filter.name = { $regex: name, $options: "i" };
+    }
+
+    const voters = await voter.find(filter)
+      .skip(skip)
+      .limit(limit);
+
+    const total = await voter.countDocuments(filter);
+
+    res.json({
+      success: true,
+      data: voters,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit)
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+

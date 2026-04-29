@@ -7,11 +7,11 @@ class VotingService {
     const { voter_id, candidate_id } = voteData;
 
     const existingCandidate = await Candidates.findById(candidate_id);
-    
+
     if (!existingCandidate) throw new Error('El candidato no existe');
 
     const existingVoter = await Voters.findById(voter_id);
-    
+
     if (!existingVoter) throw new Error('Este votante no existe');
 
     // Verificar si ya votó
@@ -19,7 +19,7 @@ class VotingService {
 
     if (existingVote) throw new Error('Este votante ya ha votado');
 
-    
+
 
     // 1. Crear voto
     const vote = await Votes.create({ voter_id, candidate_id });
@@ -35,3 +35,4 @@ class VotingService {
 }
 
 module.exports = { VotingService };
+

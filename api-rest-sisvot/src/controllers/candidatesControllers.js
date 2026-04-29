@@ -3,31 +3,31 @@ const cadidate = require("../models/candidates");
 
 exports.registerCandidate = async (req, res) => {
 
-    try {
-        const { name, party } = req.body;
+  try {
+    const { name, party } = req.body;
 
-        await ValidationService.validateUniqueName(name);
+    await ValidationService.validateUniqueName(name);
 
-        const newCandi = await cadidate.create({ name, party });
+    const newCandi = await cadidate.create({ name, party });
 
-        res.status(201).json({ msg: "Candidato creado", user: newCandi });
-        
-    } catch (err) {
-        res.status(500).json({ msg: err.message });   
-    }
+    res.status(201).json({ msg: "Candidato creado", user: newCandi });
+
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
 }
 exports.obtCandidates = async (req, res) => {
-    try {
+  try {
 
-        const getCandi = await cadidate.find();
-        if (!getCandi) {
-            return res.status(400).json({success: false, message: "Candidatos no encontrados"})    
-        }
-        res.json(getCandi);
-        
-    } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
+    const getCandi = await cadidate.find();
+    if (!getCandi) {
+      return res.status(400).json({ success: false, message: "Candidatos no encontrados" })
     }
+    res.json(getCandi);
+
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 }
 
 exports.obtDetCandi = async (req, res) => {
@@ -35,12 +35,12 @@ exports.obtDetCandi = async (req, res) => {
     const { idCandidate } = req.params;
 
     const candid = await cadidate.find({ _id: idCandidate })
-      .populate("_id", "name party votes"); 
+      .populate("_id", "name party votes");
 
     res.json(candid);
   } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: "Error al obtener los detalles del candidato" });
+    console.error(err);
+    res.status(500).json({ message: "Error al obtener los detalles del candidato" });
   }
 };
 
@@ -57,5 +57,43 @@ exports.deleteCandi = async (req, res) => {
 
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.getCandid = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const name = req.query.name || "";
+
+    const filter = {};
+
+    if (name) {
+      filter.name = { $regex: name, $options: "i" };
+    }
+
+    const candidates = await cadidate.find(filter)
+      .skip(skip)
+      .limit(limit);
+
+    const total = await cadidate.countDocuments(filter);
+
+    res.json({
+      success: true,
+      data: candidates,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit)
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
   }
 };

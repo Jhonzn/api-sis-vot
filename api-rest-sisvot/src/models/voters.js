@@ -1,22 +1,28 @@
 const mongoose = require("mongoose");
 
 const votersSchema = new mongoose.Schema({
-    
-    name: { 
-        type: String, 
-        required: true, 
+
+
+    cedula: {
+        type: String,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true,
         validate: {
-            validator: function(nombre) {
+            validator: function (nombre) {
                 return /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{2,}$/.test(nombre);
             },
             message: 'El nombre solo puede contener letras y espacios'
         },
-        trim: true},
-        email: { 
-        type: String, 
+        trim: true
+    },
+    email: {
+        type: String,
         required: true,
         validate: {
-            validator: function(email) {
+            validator: function (email) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             },
             message: 'El formato del email no es válido'
