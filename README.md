@@ -40,7 +40,7 @@ JWT_SECRET=supervotantecan123
 npm run dev
 📡 Endpoints
 🔓 Públicos
-GET [/api/generate-token](http://localhost:8090/generate-token) - Obtener token para pruebas
+GET [/api/generate-token](http://localhost:8090/token) - Obtener token para pruebas
 
 🔐 Protegidos (Requieren JWT)
 POST [/api/voters/registerVoter](http://localhost:8090/voters) - Registrar votante
