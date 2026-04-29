@@ -1,10 +1,10 @@
 # api-sis-vot
 Repositorio para envió de prueba técnica de New Intech
 
-🗳️ API REST - Sistema de Votación
+API REST - Sistema de Votación
 API REST para gestión de votantes con Node.js, Express y MongoDB.
 
-📦 Dependencias
+Dependencias
 Principales
 express - Framework web
 mongoose - ODM para MongoDB
@@ -16,7 +16,7 @@ dotenv - Variables de entorno
 Desarrollo
 nodemon - Recarga automática
 
-🚀 Instalación Rápida
+Instalación Rápida
 # 1. Clonar e instalar
 git clone https://github.com/Jhonzn/api-sis-vot
 cd api-rest-sisvot
@@ -38,11 +38,11 @@ JWT_SECRET=supervotantecan123
 
 # 3. Ejecutar
 npm run dev
-📡 Endpoints
-🔓 Públicos
+Endpoints
+Públicos
 GET [/api/generate-token](http://localhost:8090/token) - Obtener token para pruebas
 
-🔐 Protegidos (Requieren JWT)
+Protegidos (Requieren JWT)
 POST [/api/voters/registerVoter](http://localhost:8090/voters) - Registrar votante
 
 GET [/api/voters/obtVoters](http://localhost:8090/voters) - Listar votantes
@@ -65,7 +65,7 @@ GET [/api/votes/getVotes](http://localhost:8090/votes) - Listar votos
 
 GET [/api/votes/statistics](http://localhost:8090/votes/statistics) - Estadisticas
 
-🧪 Uso en Postman
+Uso en Postman
 Obtener token:
 
 text
@@ -82,7 +82,7 @@ Body: {
   "email": "monti@email.com"
 }
 
-🛠️ Scripts
+Scripts
 npm start      # Producción: node server
 npm run dev    # Desarrollo: nodemon server
 Servidor en: http://localhost:8090
