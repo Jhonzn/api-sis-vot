@@ -88,6 +88,9 @@ Body: {
   "email": "monti@email.com"
 }
 
+GET http://localhost:8090/voters/filter?name=Manuel%20James&page=1&limit=10
+Headers: Authorization: Bearer [token]
+
 Scripts
 npm start      # Producción: node server
 npm run dev    # Desarrollo: nodemon server
